@@ -130,8 +130,8 @@ CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",  # React local dev server Django (default port)
-    "https://book-share-iota.vercel.app/", # frontend deployment (production)
+    "https://book-share-iota.vercel.app", # frontend deployment (production)
 ]
 CORS_ALLOW_CREDENTIALS = True
 
-CSRF_TRUSTED_ORIGINS = ['https://bookshare-server.onrender.com', "https://book-share-iota.vercel.app/"]
+CSRF_TRUSTED_ORIGINS = ['https://bookshare-server.onrender.com', "https://book-share-iota.vercel.app"]
