@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Hello Book Sharers!</h1>
+<p>Welcome to the Book share project!</p>
+<ul>
+  {% for x in mybooks %}
+    <li>{{ x.title }} by {{ x.author }}</li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>

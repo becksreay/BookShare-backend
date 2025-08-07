@@ -1,0 +1,8 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.allbooks, name='books'),
+    path('all/', views.get_books, name='get_all_books'),
+    path('create/', views.create_book, name='create_book'),
+]
