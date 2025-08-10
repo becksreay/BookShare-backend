@@ -20,6 +20,19 @@ def allbooks(request):
 @api_view(['GET'])
 def get_books(request):
     books = Book.objects.all()
+
+    title = request.GET.get('title')
+    if title:
+        books = books.filter(title__icontains=title)
+
+    author = request.GET.get('author')
+    if author:
+        books = books.filter(author__icontains=author)
+
+    swapspot = request.GET.get('swapspot')
+    if swapspot:
+        books = books.filter(swapspot__icontains=swapspot)
+    
     serializer = BookSerializer(books, many=True)
     return Response(serializer.data)
 
