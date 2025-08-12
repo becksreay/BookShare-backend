@@ -9,4 +9,4 @@ class Book(models.Model):
     rating = models.CharField(max_length=255)
     review = models.CharField(max_length=255)
     swapspot = models.CharField(max_length=255)
-    
+    reservedBy = models.CharField(max_length=255, default="Unreserved")

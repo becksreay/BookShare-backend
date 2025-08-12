@@ -44,3 +44,22 @@ def create_book(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['PATCH'])
+def update_book_reservation(request):
+    title = request.data.get("title")
+    if not title:
+        return Response({"error": "Missing 'title' field"}, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        book = Book.objects.get(title=title)
+    except Book.DoesNotExist:
+        return Response({"error": "Book not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    new_reservation = request.data.get("reservedBy")
+    if new_reservation is None:
+        return Response({"error": "Missing 'reservedBy' field"}, status=status.HTTP_400_BAD_REQUEST)
+    
+    book.reservedBy = new_reservation
+    book.save()
+
+    return Response({"message": "ReservedBy updated successfully", "reservedBy": book.reservedBy})
