@@ -9,7 +9,7 @@ from .serializers import BookSerializer
 from .models import Book
 
 # Create your views here.
-def allbooks(request):
+def all_books(request):
     mybooks = Book.objects.all().values()
     template = loader.get_template('all_books.html')
     context = {
@@ -17,8 +17,16 @@ def allbooks(request):
     }
     return HttpResponse(template.render(context, request))
 
+def book_details(request, title):
+    mybook = Book.objects.get(title=title)
+    template = loader.get_template('book_details.html')
+    context = {
+       'mybook': mybook,
+    }
+    return HttpResponse(template.render(context, request))
+
 @api_view(['GET'])
-def get_books(request):
+def get_books_api(request):
     books = Book.objects.all()
 
     title = request.GET.get('title')
@@ -44,7 +52,8 @@ def create_book(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+# Rebekah Reay - Student ID: K2938309
 @api_view(['PATCH'])
 def update_book_reservation(request):
     title = request.data.get("title")

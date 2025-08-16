@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<div style="padding:20px; justify-items: left;">
+
+<h1>{{ mybook.title }}</h1>
+  
+<h2>by {{ mybook.author }}</h2>
+
+<div><img src='https://covers.openlibrary.org/a/id/{{ mybook.cover }}-M.jpg' alt="Book Cover"></div>
+
+<p>The sharer rated this <b>{{ mybook.rating }}/5 stars</b></p>
+<p>and said: <b>{{ mybook.review }}</b></p>
+
+{% if mybook.reservedBy == 'Unreserved' %}
+<p>It's currently available for collection from <b>{{ mybook.swapspot }}</b></p>
+{% else %}
+<p>It's reserved by <b>{{ mybook.reservedBy }}</b></p>
+{% endif %}
+
+<p>Back to <a href="{% url 'all_books' %}">all books</a></p>
+</div>
+
+
+</body>
+</html>

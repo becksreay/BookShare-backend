@@ -2,11 +2,11 @@
 <html>
 <body>
 
-<h1>Hello Book Sharers!</h1>
-<p>Welcome to the Book share project!</p>
+<h1>Select a book to see more details</h1>
+
 <ul>
-  {% for x in mybooks %}
-    <li>{{ x.title }} by {{ x.author }}</li>
+  {% for book in mybooks %}
+    <li><a href="{% url 'book_details' book.title %}">{{ book.title }} by {{ book.author }}</a></li>
   {% endfor %}
 </ul>
 
